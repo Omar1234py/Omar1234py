@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Read and Display Text File</title>
+  <style>
+    
+    *{
+      margin: 0;
+      padding: 0;
+      background-image: url("https://images.alphacoders.com/619/thumbbig-619885.webp");
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center ;
+      background-size: cover;
+      
+    }
+    #grid {
+      border: solid 2px black;
+      display: grid;
+      gap: 10px;
+      margin-top: 100px;
+      margin-left: 500px;
+      grid-template-columns: repeat(3, 130px);
+      background-color: white;
+      width: 380px;
+    }
+    .cell{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      background:rgb(11, 234, 185);
+      background-repeat: no-repeat;
+      background-attachment:fixed;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    h1{
+      margin-top: 50px;
+      margin-left: 550px;
+      color: white;
+    }
+    #retry{
+      margin-top: 50px;
+      margin-left: 620px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<div id = "grid">
+  <button class = "cell" onclick="play()"></button>
+  <button class = "cell"onclick="play()"></button>
+  <button class = "cell"onclick="play()"></button>
+  <button class = "cell"onclick="play()"></button>
+  <button class = "cell"onclick="play()"></button>
+  <button class = "cell"onclick="play()"></button>
+  <button class = "cell"onclick="play()"></button>
+  <button class = "cell"onclick="play()"></button>
+  <button class = "cell"onclick="play()"></button>
+</div>
+<br>
+<h1 id = "result"></h1>
+<button id = "retry" disabled onclick="retry()">play again</button>
+<script>
+  var turn = "x";
+  var plays = Array(9).fill(0);
+  var buttons = document.querySelectorAll('.cell');
+  var count = 0;
+  function stop(){
+    for(let k = 0 ; k < 9 ; k++){
+      buttons[k].disabled = true;
+    }
+    document.getElementById("retry").disabled = false
+  }
+  function win(){
+    for(let k = 0 ; k < 9 ; k++){
+        if(plays[k]=== plays[k+1] && plays[k+1] === plays[k+2] && plays[k+2] !== 0 && (k===0 || k===3 || k===6)){
+          document.getElementById("result").textContent = "Player " + turn + " wins";
+          stop();
+          return true;
+        }
+        else if(plays[k]=== plays[k+3] && plays[k+3] === plays[k+6] && plays[k+6]!== 0 && (k===0 || k===1 || k===2)){
+          document.getElementById("result").textContent = "Player " + turn + " wins";
+          stop();
+          return true;
+        }
+        else if(plays[0] === plays[4] && plays[4] === plays[8] &&  plays[8]!==0){
+          document.getElementById("result").textContent = "Player " + turn + " wins";
+          stop();
+          return true;
+        }
+        else if(plays[2] === plays[4] && plays[4] === plays[6] &&  plays[6]!==0){
+          document.getElementById("result").textContent = "Player " + turn + " wins";
+          stop();
+          return true;
+        }
+        console.log( k + " " + plays[k]);
+      }
+      return false;
+  }
+  function check(){
+    if(count === 9 && !win()){
+      if(!win()){
+        document.getElementById("result").textContent = "DRAW";
+        stop();
+      }
+    }
+    else{
+      win();
+    }
+  }
+  function play(){
+    for(let i = 0 ; i < buttons.length;i++){
+      buttons[i].addEventListener("click",e=>{
+        if(plays[i] === 0){
+          buttons[i].value = turn;
+          buttons[i].textContent = turn;
+          plays[i] = turn;
+          count+=1;
+          check();
+          if(turn === "x"){
+            turn = "o";
+          }
+          else{
+            turn = "x";
+          }
+        }
+      })
+    }
+  }
+  function retry(){
+    for(let i = 0 ; i < 9 ; i++){
+      count = 0;
+      buttons[i].value = "";
+      buttons[i].textContent = "";
+      buttons[i].disabled = false;
+      plays[i] = 0;
+    }
+    document.getElementById("result").textContent = "";
+    document.getElementById("retry").disabled = true;
+  }
+</script>
+</body>
+</html>
