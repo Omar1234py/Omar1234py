@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Read and Display Text File</title>
+  <style>
+    
+  </style>
+</head>
+<body>
+  <h1 style="margin-left: 40%;">Hangman game</h1>
+    <div id = "buttons"></div>
+    <br>
+    <button onclick="reset()" style="width: 100px; align-items: center; text-align: center;">reset game</button>
+    <br>
+    <div id = "letters"></div>
+    <br>
+    <div id = 'pic'></div>
+    <br>
+    <h2 id = "result"></h2>
+
+<script>
+    let words = ["omar" , "Bay" , "fantastic" , "wonderful" , "pointers"];
+    let index;
+    let word;
+    let c ;
+    let tc ;
+    let ss ;
+    function select(){
+      index = Math.floor(Math.random()*(words.length));
+      word = words[index].toUpperCase();
+      c = 0;
+      tc = 0;
+    }
+    function createboxes(){
+      for(let i = 0;i< word.length;i++){
+        let letter = document.createElement('input');
+        letter.type = "text";
+        letter.id = "let";
+        letter.style.borderRadius = "5px";
+        letter.style.margin = "3px";
+        letter.style.width = "30px";
+        letter.style.height = "30px";
+        letter.disabled = true;
+        letter.style.backgroundColor = "rgb(0,0,0)";
+        letter.style.color = "rgb(255,122,121)";
+        letter.style.alignItems = "center";
+        letter.style.textAlign = "center";
+        letter.style.fontSize = "25px"
+        document.getElementById('letters').appendChild(letter);
+        ss = document.querySelectorAll("#let");
+      }
+    }
+    select();
+    createboxes();
+    for(let i = 65;i<=90;i++){
+        let letter = String.fromCharCode(i);
+        let btn = document.createElement('button');
+        btn.textContent = letter;
+        btn.style.textAlign = "center";
+        btn.style.alignItems = "center";
+        btn.style.margin = "3px";
+        btn.id = 'b';
+        btn.addEventListener('click',e=>{
+          btn.disabled = true;
+          if(word.includes(btn.textContent)){
+            for(let j = 0;j< word.length;j++){
+              if(word[j] === btn.textContent){
+                ss[j].value = btn.textContent;
+                tc+=1;
+                if(tc === word.length){
+                  end();
+                  document.getElementById("result").textContent = "YOU WIN !!!";
+                }
+              }
+            }
+          }
+          else{
+            add();
+          }
+        })
+        document.getElementById('buttons').appendChild(btn);
+    }
+  let pic = document.createElement('img');
+  let v = c;
+  v+=".png";
+  pic.src = v ;
+  pic.width = 500;
+  pic.height = 500;
+  document.getElementById('pic').innerHTML = "";
+  document.getElementById('pic').appendChild(pic);
+  function add(){
+    if(c < 6){
+      c+=1;
+    }
+    if(c == 6){
+      end();
+      document.getElementById("result").textContent = "YOU lost !!!";
+    }
+    let pic = document.createElement('img');
+    let v = c;
+    v+=".png";
+    pic.src = v ;
+    pic.width = 500;
+    pic.height = 500;
+    document.getElementById('pic').innerHTML = "";
+    document.getElementById('pic').appendChild(pic);
+  }
+  function end(){
+    let x = document.querySelectorAll('#b');
+    for(let i = 0 ; i < x.length;i++){
+      x[i].disabled = true;
+    }
+  }
+  function reset(){
+    let pic = document.createElement('img');
+    let v = 0;
+    v+=".png";
+    pic.src = v ;
+    pic.width = 500;
+    pic.height = 500;
+    document.getElementById('pic').innerHTML = "";
+    document.getElementById('pic').appendChild(pic);
+    c = 0;
+    let x = document.querySelectorAll('#b');
+    for(let i = 0 ; i < x.length;i++){
+      x[i].disabled = false;
+    }
+    for(let i = 0 ; i < word.length;i++){
+      tc = 0;
+      document.getElementById("result").textContent = "";
+      document.getElementById("letters").innerHTML = "";
+    }
+    select();
+    createboxes();
+  }
+</script>
+</body>
+</html>
