@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Photo Gallery - Fish Exhibition</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 15px;
+    padding: 20px;
+    width: 100%;
+    margin: auto;
+  }
+  .gallery img {
+    width: 200px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: 0.5s;
+  }
+  .gallery img:hover {
+    transform: scale(1.09);
+  }
+  .gallery:has(img:hover) img:not(:hover){
+    filter: blur(3px);
+  }
+</style>
+</head>
+<body>
+<div class="navbar">
+  <a href="index.html" class="logo">Fish Store</a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About</a>
+    <a href="products.html">Products</a>
+    <a href="gallery.html">Gallery</a>
+  </div>
+</div>
+<div class="body">
+  <div class="gallery">
+    <img src="https://i.pinimg.com/736x/9f/20/43/9f20438f35423fb677631e50dedee38d.jpg" alt="Fish 1" />
+    <img src="https://i.pinimg.com/1200x/12/db/85/12db857278c11c704d224fb3f7cb04a5.jpg" alt="Fish 2" />
+    <img src="https://i.pinimg.com/736x/88/d7/6d/88d76d738672b48814a5415504965322.jpg" alt="Fish 3" />
+    <img src="https://i.pinimg.com/1200x/c0/53/a1/c053a169436b94c9fc3a4e3a93bc61fc.jpg" alt="Fish 4" />
+    <img src="https://i.pinimg.com/736x/c9/0a/18/c90a18b070cb6280d8d4e6288b6e0619.jpg" alt="Fish 5" />
+    <img src="https://i.pinimg.com/1200x/55/06/c0/5506c09dd512a4d972a580054868a475.jpg" alt="Fish 6" />
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-container">
+
+    <div class="footer-section">
+      <h3>About Us</h3>
+      <p>We are an aquatic exhibition showcasing rare and exotic fish from around the world.</p>
+      <p>Our mission is to educate visitors and spread awareness about marine life.</p>
+    </div>
+
+    <div class="footer-section">
+      <h3>Contact</h3>
+      <p><strong>Address:</strong> Nile Street, Cairo, Egypt</p>
+      <p><strong>Phone:</strong> +20 123 456 7890</p>
+      <p><strong>Email:</strong> info@aquafish.com</p>
+    </div>
+
+    <div class="footer-section">
+      <h3>Social Media</h3>
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">Twitter</a>
+      <a href="#">YouTube</a>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

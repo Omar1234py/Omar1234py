@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Fish Exhibition</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .contact-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+            resize: none;
+        }
+
+        input[type='button'] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background-color: #005f99;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type='button']:hover {
+            background-color: #003f63;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a href="index.html" class="logo">Fish Store</a>
+        <div class="links">
+            <a href="index.html">Home</a>
+            <a href="contact.html">Contact</a>
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="gallery.html">Gallery</a>
+        </div>
+    </div>
+
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        <input type="text" placeholder="Your Name" id="name">
+        <input type="text" placeholder="Email" id="email">
+        <textarea rows="5" placeholder="Message" id="message"></textarea>
+        <input type="button" onclick="f1()" value="Send message">
+    </div>
+
+    <div class="footer">
+        <div class="footer-container">
+
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are an aquatic exhibition showcasing rare and exotic fish from around the world.</p>
+                <p>Our mission is to educate visitors and spread awareness about marine life.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><strong>Address:</strong> Nile Street, Cairo, Egypt</p>
+                <p><strong>Phone:</strong> +20 123 456 7890</p>
+                <p><strong>Email:</strong> info@aquafish.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">YouTube</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script>
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const messageField = document.getElementById('message');
+    function f1(){
+        
+        if (!nameField.value.trim() || !emailField.value.trim() || !messageField.value.trim()) {
+            alert("All fields are required!");
+            return;
+        }
+        nameRegex = /^[A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+$/;
+        emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com)$/;
+        if (!nameRegex.test(nameField.value)) {
+            alert("Name must contain 3 words, each starting with a capital letter.\nExample: Ahmed Mohamed Ali");
+            return;
+        }
+        if (!emailRegex.test(emailField.value)) {
+            alert("Email must be in the format: username@domain.com");
+            return;
+        }
+
+        alert("Message sent successfully!");
+    }
+</script>
+
+</html>
